@@ -6,7 +6,7 @@
 
 - `.venv/`
 - `checkpoints/`
-- `src/robot/policy/**/checkpoints/`
+- `src/robot/policy/pi05/checkpoints/`
 - `save/`
 - `datasets/`
 - `output_video/`
@@ -19,7 +19,7 @@
 
 ## 建议保留
 
-- 推理源码：`src/robot/policy/pi05/`
+- pi05 推理源码：`src/robot/policy/pi05/`
 - Piper 双臂机器人配置：`my_robot/agilex_piper_dual_base.py`
 - 任务指令 JSON 示例：`task_instructions/`
 - 安装、前置检查、推理命令说明

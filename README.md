@@ -1,6 +1,8 @@
-# Piper Dual VLA Inference
+# Piper Dual pi05 Inference
 
-面向 AgileX Piper 双臂真机的 pi05 VLA 推理工程。这个仓库基于 `control_your_robot` 的机器人控制/采集框架整理，重点保留 Piper 双臂真机推理入口，并加入三类动作执行改动：
+面向 AgileX Piper 双臂真机的 pi05 VLA 推理适配工程。本仓库只保留 pi05 在 Piper 双臂上的真实机器人推理代码，不包含其它策略实现。
+
+推理入口包含：
 
 - `baseline`: 原始 pi05 action chunk 推理 + EMA/Bezier 平滑。
 - `AAC`: Adaptive Action Chunking，根据相邻 chunk 动作跳变动态调整 chunk 长度。
@@ -32,6 +34,10 @@ Piper-Dual-VLA-Inference/
 │       ├── deploy_pi05_real_aac.py       # AAC 真机推理
 │       ├── deploy_pi05_real_rtc.py       # RTC 真机推理
 │       └── deploy_pi05_real_aac_rtc.py   # AAC + RTC 真机推理
+├── tools/
+│   ├── realsense_serial.py               # 查看 RealSense 序列号
+│   ├── realsense_test.py                 # 相机连通性测试
+│   └── test_piper_dual_read_control.py   # Piper 双臂读写测试
 ├── task_instructions/                    # 任务语言指令示例
 ├── docs/
 └── .env.example
@@ -117,4 +123,4 @@ python src/robot/policy/pi05/deploy_pi05_real_aac_rtc.py \
 
 ## 上游说明
 
-本项目基于 `control_your_robot` 整理，保留 Apache-2.0 License。正式发布前建议补充你自己的修改说明、论文/项目引用和权重获取方式。
+本项目基于 `control_your_robot` 的机器人控制框架整理，并聚焦到 pi05 + Piper 双臂真机适配。正式发布前建议补充你的修改说明、论文/项目引用和权重获取方式。

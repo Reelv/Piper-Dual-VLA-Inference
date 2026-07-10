@@ -63,7 +63,7 @@ export PIPER_CAM_RIGHT_WRIST_SERIAL=replace_me
 
 相机对应关系必须和训练数据一致：
 
-- `cam_head` -> openpi/pi05 观测中的 `cam_high`
+- `cam_head` -> pi05 观测中的 `cam_high`
 - `cam_left_wrist` -> 左腕相机
 - `cam_right_wrist` -> 右腕相机
 
