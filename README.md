@@ -9,7 +9,6 @@
 - `RTC`: Real-Time Chunking，异步推理、流式 action buffer、chunk 重叠区时间平滑。
 - `AAC + RTC`: 自适应 chunk 长度与 RTC 异步执行结合。
 
-权重、数据、录像和本机硬件 ID 不随仓库发布。开源前请先看 [开源检查清单](docs/OPEN_SOURCE_CHECKLIST.md)。
 
 ## 适用硬件
 
@@ -114,13 +113,7 @@ python src/robot/policy/pi05/deploy_pi05_real_aac_rtc.py \
 
 脚本启动后会等待回车再开始推理。运行中再次按回车结束当前 episode。
 
-## 开源注意事项
-
-- 不提交 `checkpoints/`、`save/`、`datasets/`、`output_video/`、`.venv/`。
-- 不提交真实相机序列号、CAN 适配器 bus-info、本机绝对路径。
-- 真机执行默认应先低速、小步、空场景验证。
-- 如果发布到 GitHub，建议在 release 或 README 中说明权重获取方式，而不是把权重直接放进 git。
 
 ## 上游说明
 
-本项目基于 `control_your_robot` 的机器人控制框架整理，并聚焦到 pi05 + Piper 双臂真机适配。正式发布前建议补充你的修改说明、论文/项目引用和权重获取方式。
+本项目基于 `control_your_robot` 的机器人控制框架整理，并聚焦到 pi05 + Piper 双臂真机适配。
