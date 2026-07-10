@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "piper_dual_vla_inference"
+version = "0.1.0"
+description = "Real-robot pi05 VLA inference pipeline for AgileX Piper dual arms"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+
+dependencies = [
+    "tqdm",
+    "scipy",
+    "numpy",
+    "h5py",
+    "pyrealsense2",
+    "opencv-python",
+    "keyboard",
+    "pyyaml",
+    "seaborn",
+    "seaborn",
+]
+
+[project.urls]
+Repository = "https://github.com/your-org/piper-dual-vla-inference"
+
+# ⭐ 关键配置：告诉 setuptools，包在 src/ 下面
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# 你原来就有的
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[tool.pytest.ini_options]
+markers = ["manual: should be run manually."]
+testpaths = ["src", "scripts"]

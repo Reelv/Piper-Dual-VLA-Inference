@@ -1,0 +1,48 @@
+# AAC + RTC 联合推理配置文件
+#
+# AAC (Adaptive Action Chunking):   动态 k 选择器 + Bezier 贝塞尔过渡
+# RTC (Real-Time Chunking):         StreamActionBuffer 时间平滑 + 异步推理 + prev_chunk 引导
+#
+# 两者结合: 推理线程自适应调整 k + RTC 引导, 主循环从缓冲区逐帧取动作执行
+
+# ── 模型与任务 ──
+model_path: ./src/robot/policy/pi05/checkpoints/pi05_piper_full_base/sort_out_40/20000
+task_name: sort_out_40
+robot_name: agilex_piper_dual_base
+robot_class: PiperDual
+
+# ── 运行参数 ──
+episode_num: 1
+max_step: 3500
+control_dt: 0.04
+video: null
+node: false
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# AAC 参数 — 自适应 k-Selector
+# ═══════════════════════════════════════════════════════════════════════════════
+k_min: 10              # 最小 chunk 大小（场景剧烈变化时）
+k_max: 80             # 最大 chunk 大小（场景平稳时）
+k_init: 50             # 初始 chunk 大小
+delta_high: 0.03       # 动作跳变高阈值: 超过 → 减小 k
+delta_low: 0.005       # 动作跳变低阈值: 低于 → 增大 k
+k_step_up: 5           # 每次增大 k 的步长
+k_step_down: 10        # 每次减小 k 的步长
+blend_steps: 20        # Bezier 贝塞尔过渡步数
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# RTC 参数 — StreamActionBuffer + 异步推理 + prev_chunk 引导
+# ═══════════════════════════════════════════════════════════════════════════════
+inference_rate: 8      # 推理频率 (Hz)
+smooth_method: temporal # "temporal" | "raw"
+min_smooth_steps: 20    # 重叠区最小平滑步数
+latency_k: 4           # 延迟裁剪步数
+decay_alpha: 0.25      # 指数衰减系数 (StreamActionBuffer 内部用)
+
+# RTC 引导
+enable_rtc: true        # 是否发送 prev_action_chunk 给模型
+mask_prefix_delay: false
+max_guidance_weight: 0.5
+
+# ── 执行层 ──
+ema_alpha: 0.3          # 逐帧 EMA 平滑系数

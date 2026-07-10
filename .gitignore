@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+
+# Robot data and generated artifacts
+save/
+datasets/
+data/
+execution_logs/
+output/
+output_video/
+realsense_captures/
+*.hdf5
+*.mp4
+*.avi
+*.mov
+*.npy
+*.npz
+
+# Model weights and checkpoints
+checkpoints/
+weights/
+policy/weights/
+src/robot/policy/**/checkpoints/
+src/robot/policy/**/weights/
+src/robot/policy/**/output_video/
+src/robot/policy/**/save/
+
+# Local hardware configuration
+local_config/
+piper_scripts/
+
+# IDE
+.vscode/
+.idea/

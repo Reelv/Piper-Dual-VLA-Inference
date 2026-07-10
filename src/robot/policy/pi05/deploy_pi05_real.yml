@@ -1,0 +1,9 @@
+model_path: ./src/robot/policy/pi05/checkpoints/pi05_piper_full_base/sort_out_40/20000
+task_name: sort_out_40
+robot_name: agilex_piper_dual_base
+robot_class: PiperDual
+episode_num: 1
+max_step: 3500
+control_dt: 0.04
+video: null
+node: false

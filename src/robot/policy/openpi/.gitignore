@@ -1,0 +1,14 @@
+# Ignore all .pyc files
+*.pyc
+
+# Ignore __pycache__ directory
+__pycache__/
+
+# Ignore other Python cache files
+*.pyo
+*.pyd
+
+# datasets
+datasets/
+save/
+checkpoints/

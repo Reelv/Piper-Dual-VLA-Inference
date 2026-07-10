@@ -1,0 +1,42 @@
+# RTC (Real-Time Chunking) 推理配置文件
+# 参考论文: "Real-Time Execution of Action Chunking Flow Policies" (Black et al., 2025)
+#
+# RTC 核心思想：
+#   - 异步推理：推理线程非阻塞地将 action chunk 推入 StreamActionBuffer
+#   - 时间平滑：缓冲区对相邻 chunk 重叠部分做线性混合，消除 chunk 边界跳变
+#   - 延迟估计：基于 RTT 中位数预测推理延迟步数，传给服务器做 chunk 对齐
+#   - 上一 chunk 引导：将已执行的 action chunk 前缀发送给模型，引导新 chunk 生成
+
+
+
+# ── 模型与任务 ──
+model_path: ./src/robot/policy/pi05/checkpoints/pi05_piper_full_base/sort_out_40/20000
+task_name: sort_out_40
+robot_name: agilex_piper_dual_base
+robot_class: PiperDual
+
+# ── 运行参数 ──
+episode_num: 1
+max_step: 3500
+control_dt: 0.04            # 控制周期 (秒), 30Hz → 0.033, 这里设 0.04
+video: null                 # 录像摄像头, null 表示不录像
+node: false                  # 是否使用 robot_node 模式
+
+# ── RTC 特有参数 ──
+chunk_size: 50              # 每次推理的 action chunk 大小
+execute_horizon: 12         # 每次实际执行的动作步数 (≤ chunk_size)
+inference_rate: 8           # 推理频率 (Hz), 即每秒触发几次推理
+
+# ── StreamActionBuffer 平滑参数 ──
+smooth_method: temporal     # 平滑方法: "temporal" (时间混合) | "raw" (不平滑)
+min_smooth_steps: 20         # 最小平滑步数 (重叠区至少保留这么长)
+latency_k: 4                # 延迟裁剪步数 (丢弃 chunk 前 k 步以补偿延迟)
+decay_alpha: 0.25           # 指数衰减系数 (temporal ensembling 用)
+
+# ── RTC 引导参数 ──
+enable_rtc: true            # 是否启用 RTC 模式 (发送 prev_action_chunk)
+mask_prefix_delay: false     # 是否对已执行前缀做延迟掩码
+max_guidance_weight: 0.5    # RTC guidance 最大权重
+
+# ── EMA 逐帧平滑 (执行层) ──
+ema_alpha: 0.3            # EMA 平滑系数, 0~1, 越小越平滑

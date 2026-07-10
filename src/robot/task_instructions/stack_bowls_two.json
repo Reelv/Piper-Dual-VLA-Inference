@@ -1,0 +1,27 @@
+{
+    "instructions": [
+ "With the left arm, hold the ceramic bowl with glossy surface and place it onto the ceramic bowl with earthy brown trim."
+    ],
+    "full_description": "there are two bowls on the table, stack the left bowl on the right bowl",
+    "schema": "{one arm} manipulates and stacks the left bowl onto the right bowl",
+    "preference": "num of words should not exceed 20. Degree of detail avg 8",
+    "seen": [
+        "One arm picks left bowl and stacks it on right bowl.",
+        "Place left bowl gently on top of the right bowl.",
+        "Lift left bowl and stack it onto the right bowl.",
+        "One arm relocates left bowl onto the right bowl.",
+        "Set left bowl steadily on the right bowl.",
+        "Place left bowl down atop the right bowl.",
+        "Stack left bowl neatly over the right bowl.",
+        "One arm takes left bowl and sets it on right bowl.",
+        "Lay left bowl slowly over the right bowl.",
+        "One arm moves left bowl to stack on right bowl."
+    ],
+    "unseen": [
+        "Stack the left bowl steadily on the right bowl.",
+        "Lift the left bowl and place it above the right bowl.",
+        "Take the left bowl and stack it on the right bowl.",
+        "Place the left bowl carefully atop the right bowl.",
+        "Grab left bowl and set it on the right bowl."
+    ]
+}
