@@ -2,6 +2,14 @@
 
 面向 AgileX Piper 双臂真机的 pi05 VLA 推理适配工程。本仓库只保留 pi05 在 Piper 双臂上的真实机器人推理代码，不包含其它策略实现。
 
+## 推理结果
+
+![Head camera inference result](output_video/episode_0_cam_head.gif)
+
+![Left wrist camera inference result](output_video/episode_0_cam_left_wrist.gif)
+
+![Right wrist camera inference result](output_video/episode_0_cam_right_wrist.gif)
+
 推理入口包含：
 
 - `baseline`: 原始 pi05 action chunk 推理 + EMA/Bezier 平滑。
