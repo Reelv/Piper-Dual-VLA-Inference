@@ -122,6 +122,3 @@ python src/robot/policy/pi05/deploy_pi05_real_aac_rtc.py \
 脚本启动后会等待回车再开始推理。运行中再次按回车结束当前 episode。
 
 
-## 上游说明
-
-本项目基于 `control_your_robot` 的机器人控制框架整理，并聚焦到 pi05 + Piper 双臂真机适配。
